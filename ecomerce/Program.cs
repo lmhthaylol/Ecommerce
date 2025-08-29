@@ -1,5 +1,7 @@
 using ecomerce.Data;
 using ecomerce.Helper;
+using ecomerce.Interfaces;
+using ecomerce.Reponsitories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Hshop2023Context>(options => { options.UseSqlServer(builder.Configuration.GetConnectionString("HShop")); });
 builder.Services.AddSession();
+builder.Services.AddScoped<IAccountRepository, AccountRespository>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 var app = builder.Build();
